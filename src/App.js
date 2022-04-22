@@ -1,60 +1,49 @@
-import React,{ useState} from "react";
+import React, {  useState } from "react";
 import "./App.css";
 
-
 function App() {
-  const [count, setCount] = useState(0)
-  const [data,setData]=useState([])
-  const [intervalId, setIntervalId] = useState();
-
-  const add=()=>{
-    const newData={count:count,btn:intervalId}
+  const[data,setData]=useState([])
+  const addBtn=()=>{
+    const newData=
+      {
+      id: Math.random(),
+      isStart : false, 
+      interval: null,
+      value: 0,
+     }
     setData([...data,newData])
+    
   }
 
-  
-  const startHandle  = (i) => {
-     let updateItem=data.map((elm,ind)=>{
-      if(ind===i) { 
-        
-       
-      }return elm
-     })
-     console.log(updateItem)
-
-     if (intervalId) {
-      clearInterval(intervalId);
-      setIntervalId(0);
-      return;
-     }
-
-    const newIntervalId = setInterval(() => {
-      setCount(prevCount => prevCount + 1);
-    }, 1000);
-    setIntervalId(newIntervalId);
-  };
-  
-
+  const startStopCounter = (timerCount)=>{
+    let temp_state = [...data];
+	let temp_element = { ...data[timerCount] };
+	temp_element.isStart = !temp_element.isStart;
+  temp_element.interval=setInterval(()=>{
+    temp_element.value= temp_element.value++
+  }, 1000)
+  temp_state[timerCount] = temp_element;
+	setData( temp_state );
+ }
   return (
     <div>
       <div className="container-fluid d-flex justify-content-between mt-2">
-        <button className="btn btn-dark add-counter" onClick={add}>Add Counter</button>
-        <div className="showValue bg-dark  ">{count}</div>
+        <button className="btn btn-dark add-counter" onClick={addBtn}>Add Counter</button>
+        <div className="showValue bg-dark  ">{data.value}</div>
       </div>
       <div className="container-fluid counters mt-2">
-           {
-             data.map((item,index)=>{
-               
-               return <div className="counters-child" key={index}>
-               <button className="btn btn-light" type="button" onClick={()=>startHandle(index)}>
-                 {
-                   !intervalId ? "start":"stop"
-                 }
-               </button>
-               <div className="timer bg-light text-dark mt-2 ">{count}</div>
-             </div> 
-             })
-           }
+        {
+          data.map((item,index)=>{
+            return <div className="counters-child" key={index}>
+            <button className="btn btn-light" type="button" onClick={()=>startStopCounter(index)}>
+              {
+                !item.isStart ? "Start" : "Stop"
+              }
+            </button>
+            <div className="timer bg-light text-dark mt-2 ">{item.value}</div>
+          </div>
+          })
+        }
       </div>
     </div>
   );

@@ -1,50 +1,54 @@
-body{
-  background: linear-gradient(to bottom,rgb(37, 37, 37),rgb(49, 49, 136),rgba(0, 0, 252,0.5),rgba(53, 53, 53, 0.5),rgb(253, 253, 254));
+body {
+  background: linear-gradient(
+    to bottom,
+    rgb(37, 37, 37),
+    rgb(49, 49, 136),
+    rgba(0, 0, 252, 0.5),
+    rgba(53, 53, 53, 0.5),
+    rgb(253, 253, 254)
+  );
   height: 100vh;
 }
-.add-counter{
+.add-counter {
   height: 50px;
   width: 200px;
   color: white;
   font-size: 20px;
 }
-.showValue{
+.showValue {
   height: 50px;
   width: 50px;
   color: white;
   border-radius: 6px;
   font-size: 20px;
   display: flex;
- align-items: center;
- justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-.counters{
-width: 100%;
-display: flex;
-overflow-x: scroll;
-justify-content: center;
-
+.counters {
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+  justify-content: center;
 }
-.counters::-webkit-scrollbar{
+.counters::-webkit-scrollbar {
   display: none;
 }
 
-
-.counters button{
+.counters button {
   height: 50px;
   width: 150px;
   font-size: 20px;
 }
-.counters .timer{
+.counters .timer {
   width: 150px;
   height: 100px;
   border-radius: 10px;
   font-size: 20px;
- display: flex;
- align-items: center;
- justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.counters-child{
+.counters-child {
   padding: 5px;
 }
-
